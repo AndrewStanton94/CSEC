@@ -1,17 +1,19 @@
-for value in {1..10}
-do
-	echo $value
-	if cmp -s "decryptedHashes/twobinfile-four.txt" "hashedLines/hash-${value}.txt"
-	then
-	   echo "The files match"
-	else
-		echo "nope"
-	fi
+echo "Generating data"
+(cd hashedLines; ./massHash.sh)
+(cd signedHashes/; ./massSign.sh)
 
-	if cmp -s "decryptedHashes/fourbinfile-two.txt" "hashedLines/hash-${value}.txt"
+for file in $(ls signedHashes/*four*)
+do
+	if cmp -s "decryptedHashes/fourbinfile-two.txt" "${file}"
 	then
-	   echo "The files match"
-	else
-		echo "nope"
+	   echo "The file ${file} matches"
+	fi
+done
+
+for file in $(ls signedHashes/*two*)
+do
+	if cmp -s "decryptedHashes/twobinfile-four.txt" "${file}"
+	then
+	   echo "The file ${file} matches"
 	fi
 done
