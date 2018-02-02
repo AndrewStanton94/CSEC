@@ -1,0 +1,1 @@
+SHA256(../lines/line7v2.txt)= 6ef20fc55d060f0147827d0619da770bdb6993ff5c18e752b5fb07569a64ea8d
